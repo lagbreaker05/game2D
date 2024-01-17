@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import entity.Player;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class SuperObject {
 
@@ -18,6 +19,8 @@ public class SuperObject {
 	public int solidAreaDefaultX = 0;
 	public int solidAreaDefaultY = 0;
 	public boolean canBePickedUp = false;
+	UtilityTool uTool = new UtilityTool();
+	
 	
 	
 	public void draw(Graphics2D g2, GamePanel gp) {

@@ -15,6 +15,7 @@ public class OBJ_Lightning_Boots extends SuperObject{
 try {
 			
 			image = ImageIO.read(getClass().getResourceAsStream("/objects/lightning_boots.png"));
+			
 		} catch (IOException e) {
 			
 			e.printStackTrace();
