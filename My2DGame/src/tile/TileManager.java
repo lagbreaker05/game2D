@@ -2,9 +2,12 @@ package tile;
 
 import java.awt.Graphics2D;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 
@@ -27,11 +30,51 @@ public class TileManager {
 		
 		
 		getTileImage();
-		loadMap("/maps/world01.txt");
+		
+			loadMap("/maps/world_01.csv");
+		
 	}
 	
+/*	private void loadMap(String filePath) throws FileNotFoundException {
+		
+		
+		 try (Scanner scanner = new Scanner(new File(filePath))) {
+	            // Assuming a maximum number of columns in the CSV file
+	            
+
+	            // 2D array to store data rows
+	            int[][] data = new int[gp.maxWorldCol][];
+	            int row = 0;
+
+	            while (scanner.hasNextLine()) {
+	                String line = scanner.nextLine();
+	                String[] columns = line.split(",");
+
+	                // Array to store integer values for the current row
+	                int[] rowData = new int[columns.length];
+
+	                // Process the columns array
+	                for (int i = 0; i < columns.length; i++) {
+	                    // Convert each column to an integer
+	                    try {
+	                        rowData[i] = Integer.parseInt(columns[i]);
+	                    } catch (NumberFormatException e) {
+	                        // Handle the case where the value is not an integer
+	                        System.err.println("Invalid integer value: " + columns[i]);
+	                    }
+	                }
+
+	                // Store the rowData array in the data array
+	                data[row] = rowData;
+	                row++;
+	            }
+	            mapTileNum = data;
+		 }
+		
+		
+	}*/
 	
-	public void loadMap(String filePath)
+	/*public void loadMap(String filePath)
 	{
 		
 		try {
@@ -62,16 +105,43 @@ public class TileManager {
 			
 			
 		}
+	}*/
+	
+	public void loadMap(String filePath) {
+	    try {
+	        InputStream is = getClass().getResourceAsStream(filePath);
+	        Scanner scanner = new Scanner(new InputStreamReader(is));
+
+	        int row = 0;
+
+	        while (scanner.hasNextLine() && row < gp.maxWorldRow) {
+	            String line = scanner.nextLine();
+	            String[] numbers = line.split(",");
+
+	            for (int col = 0; col < Math.min(numbers.length, gp.maxWorldCol); col++) {
+	                int num = Integer.parseInt(numbers[col].trim()); // trim to remove leading/trailing whitespaces
+
+	                mapTileNum[col][row] = num;
+	            }
+
+	            row++;
+	        }
+
+	        scanner.close();
+
+	    } catch (Exception e) {
+	        e.printStackTrace(); // Handle the exception appropriately in your application
+	    }
 	}
 	
 	public void getTileImage()
 	{
 		setup(0, "grass", false);
-			setup(1, "wall", true);
-			setup(2, "water", true);
-			setup(3, "wooden_plank", false);
-			setup(4, "tree", true);
-			setup(5, "sand", false);
+			setup(1, "sand", false);
+			setup(2, "tree", true);
+			setup(3, "wall", true);
+			setup(4, "wooden_plank", false);
+			setup(5, "dirt", false);
 	}
 	
 	public void setup(int index, String imagePath, boolean collision) {
