@@ -18,6 +18,7 @@ public class Player extends Entity {
 	public GamePanel gp;
 	KeyHandler keyH;
 	public Inventory inventory;
+	
 	public boolean readyToPickUp = false;
 	private boolean readyToPickUp2 = true;
 	
@@ -164,6 +165,10 @@ public class Player extends Entity {
 			
 		}
 		 wasPressed=true;
+		}
+		else
+		{
+			gp.invManager.checkTimers(this);
 		}
 		
 		if(this.readyToPickUp) {

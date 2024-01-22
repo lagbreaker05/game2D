@@ -32,6 +32,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	//FPS
 	int FPS = 60;
+	public double currentTime=System.nanoTime();
 	
 	TileManager tileM = new TileManager(this);
 	Thread gameThread;
@@ -39,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable{
 	public KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public Player player = new Player(this, keyH);
-	InventoryManager invManager = new InventoryManager(player.inventory, this);
+	public InventoryManager invManager = new InventoryManager(player.inventory, this);
 	
 	
 	
@@ -71,6 +72,7 @@ public class GamePanel extends JPanel implements Runnable{
 		
 		double drawInterval = 1000000000/FPS;
 		double nextDrawTime = System.nanoTime() + drawInterval;
+		double remainingTime;
 		while(gameThread != null) {
 			
 			//long currentTime = System.nanoTime();
@@ -81,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable{
 			
 			
 			try {
-				double remainingTime = nextDrawTime - System.nanoTime();
+				remainingTime = nextDrawTime - System.nanoTime();
 				remainingTime/=1000000;
 				if(remainingTime <0)
 				{

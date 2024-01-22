@@ -130,13 +130,13 @@ public class TileManager {
 	        scanner.close();
 
 	    } catch (Exception e) {
-	        e.printStackTrace(); // Handle the exception appropriately in your application
+	        e.printStackTrace(); 
 	    }
 	}
 	
 	public void getTileImage()
 	{
-		setup(0, "grass", false);
+		    setup(0, "grass", false);
 			setup(1, "sand", false);
 			setup(2, "tree", true);
 			setup(3, "wall", true);

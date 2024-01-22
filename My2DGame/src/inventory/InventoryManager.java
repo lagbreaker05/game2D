@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
 
@@ -24,6 +25,15 @@ public class InventoryManager {
 			e.printStackTrace();
 		}
 		
+	}
+	
+//checks and, if necessary, executes whether the abilities of items in the inventory interact with the timer.
+	public void checkTimers(Player player) {
+		for(int i = 0; i<inventory.cols; i++) {
+			if(inventory.slots[0][i].contains()) {
+				inventory.slots[0][i].superObject.timerAbility(player);
+			}
+		}
 	}
 	
 	public InventoryManager(Inventory inventory, GamePanel gp) {

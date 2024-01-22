@@ -43,6 +43,9 @@ public void uniqueObjectsiAbility(Player player) {
 		
 		
 	}
+public void timerAbility(Player player) {
+	
+}
 	protected int searchKeyInInventory(Player player) {
 		int index = 999;
 		for(int i = 0; i<player.inventory.cols; i++) {
