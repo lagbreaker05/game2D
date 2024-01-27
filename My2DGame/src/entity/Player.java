@@ -12,6 +12,7 @@ import inventory.Inventory;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Lightning_Boots;
 
 public class Player extends Entity {
 
@@ -27,6 +28,8 @@ public class Player extends Entity {
 	
 	public boolean pressedOnce =false;
 	private boolean wasPressed = false;
+	
+	BufferedImage image;
 	
 	public Player(GamePanel gp, KeyHandler keyH)
 	{
@@ -46,6 +49,8 @@ public class Player extends Entity {
 		
 		setDefaultValues();
 		getPlayerImage();
+		speed = 20;
+		inventory.addItem(new OBJ_Lightning_Boots());
 	}
 	public void setDefaultValues()
 	{
@@ -190,7 +195,7 @@ public class Player extends Entity {
 	
 	public void draw(Graphics2D g2)
 	{		
-		BufferedImage image = null;
+		image = null;
 		switch(direction)
 		{
 		case "up":

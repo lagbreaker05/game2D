@@ -8,9 +8,9 @@ import entity.Player;
 
 public class OBJ_Lightning_Boots extends SuperObject{
 
-	private boolean isOn = false, allowedToUse = true;
-	private int abilityDuration = 180, cooldown = 300; // counting in frames (60 frames per sec)
-	private int passedFrames = 0;
+	
+	
+	
 	public OBJ_Lightning_Boots() {
 		name = "lightning_boots";
 		canBePickedUp = true;
@@ -22,28 +22,20 @@ try {
 			
 			e.printStackTrace();
 		}
+
+      isOn = false; allowedToUse = true;
+      abilityDuration = 180; cooldownTime = 300; // counting in frames (60 frames per sec)
+      passedFrames = 0;
 	}
 	
 	public void uniqueObjectsiAbility(Player player) {
 		if(player.inventory.slots[0][player.inventory.selected].superObject!=null)
-			if(OBJ_Lightning_Boots.class.equals(player.inventory.slots[0][player.inventory.selected].superObject.getClass()) && player.readyToPickUp && allowedToUse) {
-
+			if(OBJ_Lightning_Boots.class.equals(player.inventory.slots[0][player.inventory.selected].superObject.getClass())
+					&& player.readyToPickUp && allowedToUse) {  
 				isOn=true;
 				allowedToUse = false;
 				player.speed = 7;
-				/*
-				if(isOn==false) {
-				player.speed =6;
-				isOn = true;
 				}
-				else
-					{
-					player.speed =4;
-					isOn = false;
-					}
-			}
-			else player.speed = 4;
-		else player.speed=4;*/}
 			
 	}
 	
@@ -60,7 +52,7 @@ try {
 			}
 		}
 		else if(!isOn && !allowedToUse) {
-			if(passedFrames<cooldown) {
+			if(passedFrames<cooldownTime) {
 				passedFrames++;
 			}
 			else {

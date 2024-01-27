@@ -40,8 +40,9 @@ public class GamePanel extends JPanel implements Runnable{
 	public KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 	public Player player = new Player(this, keyH);
-	public InventoryManager invManager = new InventoryManager(player.inventory, this);
 	
+	public UI ui = new UI(this);
+	public InventoryManager invManager = new InventoryManager(player.inventory, this, ui);
 	
 	
 	public ObjectsManipulator objectsManipulator = new ObjectsManipulator(this);
@@ -121,6 +122,8 @@ public class GamePanel extends JPanel implements Runnable{
 		
 	    player.draw(g2);
 		invManager.draw(g2, false);
+		
+		
 		g2.dispose();
 	}
 }

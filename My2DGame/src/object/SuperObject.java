@@ -19,6 +19,9 @@ public class SuperObject {
 	public int solidAreaDefaultX = 0;
 	public int solidAreaDefaultY = 0;
 	public boolean canBePickedUp = false;
+	public boolean isOn = false, allowedToUse = true;
+	public int abilityDuration = 0, cooldownTime = 0; // counting in frames (60 frames per sec)
+	public int passedFrames = 0;
 	UtilityTool uTool = new UtilityTool();
 	
 	
@@ -44,6 +47,10 @@ public void uniqueObjectsiAbility(Player player) {
 		
 	}
 public void timerAbility(Player player) {
+	
+}
+public int getCooldown() {
+	return (cooldownTime-passedFrames)/60;
 	
 }
 	protected int searchKeyInInventory(Player player) {

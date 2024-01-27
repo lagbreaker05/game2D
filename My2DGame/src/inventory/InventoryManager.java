@@ -1,5 +1,6 @@
 package inventory;
 
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,12 +10,20 @@ import javax.imageio.ImageIO;
 import entity.Player;
 import main.GamePanel;
 import main.KeyHandler;
+import main.UI;
 
 public class InventoryManager {
 
-	Inventory inventory;
+	public Inventory inventory;
 	BufferedImage imgSelectedSlot, imgNotSelectedSlot;
 	GamePanel gp;
+	UI ui;
+	int x = 12, y = 12;
+	int identation = 12;
+	int objectIdentation = 4;
+	int fontSize = 16;
+	Font font = new Font("SANS_SERIF", Font.BOLD, fontSize);
+	
 	
 	
 	private void prepareImages() {
@@ -36,9 +45,10 @@ public class InventoryManager {
 		}
 	}
 	
-	public InventoryManager(Inventory inventory, GamePanel gp) {
+	public InventoryManager(Inventory inventory, GamePanel gp, UI ui) {
 		this.inventory = inventory;
 		this.gp = gp;
+		this.ui = ui;
 		prepareImages();
 	}
 	
@@ -49,6 +59,7 @@ public class InventoryManager {
 		}
 		else {
 			drawInactiveInventory(g2);
+			drawCooldown(g2);
 		}
 		
 	}
@@ -59,11 +70,27 @@ public class InventoryManager {
 		
 	}
 	
+	public void drawCooldown(Graphics2D g2) {
+		
+		int screenX = x + inventory.slotSize-fontSize+4, screenY = y + inventory.slotSize-6;
+		
+		for(int i = 0; i<inventory.cols; i++) {
+			
+			if(inventory.slots[0][i].contains())
+			if(!inventory.slots[0][i].superObject.allowedToUse&&!inventory.slots[0][i].superObject.isOn) {
+				g2.drawString(Integer.toString(inventory.slots[0][i].superObject.getCooldown()+1), screenX, screenY);
+			}
+			screenX+=identation+inventory.slotSize;
+			
+		}
+		
+	}
+	
 	private void drawInactiveInventory(Graphics2D g2) {
 		
-		int screenX = 12, screenY = 12;
-		int identation = 12;
-		int objectIdentation = 4;
+		int screenX = x, screenY = y;
+		
+		
 		for(int i = 0; i<inventory.cols; i++) {
 			if(i == inventory.selected) {
 				g2.drawImage(imgSelectedSlot, screenX, screenY, inventory.slotSize ,inventory.slotSize, null );
