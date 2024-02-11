@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	TileManager tileM = new TileManager(this);
 	Thread gameThread;
+	SoundManager soundManager = new SoundManager();
 	
 	public KeyHandler keyH = new KeyHandler();
 	public CollisionChecker cChecker = new CollisionChecker(this);
@@ -60,6 +61,7 @@ public class GamePanel extends JPanel implements Runnable{
 		this.setDoubleBuffered(true);
 		this.addKeyListener(keyH);
 		this.setFocusable(true);
+		soundManager.playLoop();
 	}
 
 	public void startGameThread()

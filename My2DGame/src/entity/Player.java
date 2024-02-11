@@ -49,7 +49,7 @@ public class Player extends Entity {
 		
 		setDefaultValues();
 		getPlayerImage();
-		speed = 20;
+		
 		inventory.addItem(new OBJ_Lightning_Boots());
 	}
 	public void setDefaultValues()
@@ -61,7 +61,6 @@ public class Player extends Entity {
 	}
 	public void getPlayerImage()
 	{
-		
 		up1 = setup("boy_up_1");
 		up2 = setup("boy_up_2");
 		down1 = setup("boy_down_1");
