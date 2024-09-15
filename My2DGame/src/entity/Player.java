@@ -12,6 +12,7 @@ import inventory.Inventory;
 import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
+import object.OBJ_Key;
 import object.OBJ_Lightning_Boots;
 
 public class Player extends Entity {
@@ -38,7 +39,6 @@ public class Player extends Entity {
 		inventory = new Inventory();
 		screenX=gp.screenWidth/2 - (gp.tileSize/2);
 		screenY=gp.screenHeight/2 - (gp.tileSize/2);
-		
 		solidArea = new Rectangle();
 		solidArea.x = 8;
 		solidArea.y = 16;
@@ -50,7 +50,7 @@ public class Player extends Entity {
 		setDefaultValues();
 		getPlayerImage();
 		
-		inventory.addItem(new OBJ_Lightning_Boots());
+		inventory.addItem(new OBJ_Key());
 	}
 	public void setDefaultValues()
 	{

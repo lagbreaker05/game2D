@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import extraUI.menu.MenuManager;
 import inventory.Inventory;
 import inventory.InventoryManager;
 import object.SuperObject;
@@ -34,6 +35,8 @@ public class GamePanel extends JPanel implements Runnable{
 	int FPS = 60;
 	public double currentTime=System.nanoTime();
 	
+	public boolean paused = false;
+	
 	TileManager tileM = new TileManager(this);
 	Thread gameThread;
 	SoundManager soundManager = new SoundManager();
@@ -44,6 +47,7 @@ public class GamePanel extends JPanel implements Runnable{
 	
 	public UI ui = new UI(this);
 	public InventoryManager invManager = new InventoryManager(player.inventory, this, ui);
+	public MenuManager menuManager = new MenuManager(this);
 	
 	
 	public ObjectsManipulator objectsManipulator = new ObjectsManipulator(this);
@@ -79,7 +83,7 @@ public class GamePanel extends JPanel implements Runnable{
 		while(gameThread != null) {
 			
 			//long currentTime = System.nanoTime();
-             
+             if(!paused) 
 			update();
 			
 			repaint();
@@ -125,6 +129,8 @@ public class GamePanel extends JPanel implements Runnable{
 	    player.draw(g2);
 		invManager.draw(g2, false);
 		
+		if(paused)
+			menuManager.drawMenu(g2);
 		
 		g2.dispose();
 	}

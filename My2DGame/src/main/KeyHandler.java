@@ -55,7 +55,15 @@ public class KeyHandler implements KeyListener {
 			 System.out.println("printed");
 			
 		}
-		
+		if(code == KeyEvent.VK_ESCAPE) {
+			if(player.gp.paused==false) {
+				player.gp.paused=true;
+			}
+			else
+			{
+				player.gp.paused = false;
+			}
+		}
 		
 		
 		

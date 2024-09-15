@@ -34,7 +34,7 @@ try {
 					&& player.readyToPickUp && allowedToUse) {  
 				isOn=true;
 				allowedToUse = false;
-				player.speed = 7;
+				player.speed += 3;
 				}
 			
 	}
@@ -45,7 +45,7 @@ try {
 				passedFrames++;
 			}
 			else {
-				player.speed = 4;
+				player.speed -= 3;
 				passedFrames = 0;
 				isOn=false;
 				
